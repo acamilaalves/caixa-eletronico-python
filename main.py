@@ -40,7 +40,7 @@ while True:
         else:
             saldo -= saque
             data_hora = datetime.now().strftime("%d/%m/%Y %H:%M")
-            extrato.append(f"Saque: R$ {saque:.2f} | {data_hora}")
+            extrato.append(f"[{data_hora}] Saque: R$ {saque:.2f}")
             print(f"Saque realizado com sucesso! Saldo: R$ {saldo:.2f}")
 
     # DEPÓSITO
@@ -56,7 +56,7 @@ while True:
         else:
             saldo += deposito
             data_hora = datetime.now().strftime("%d/%m/%Y %H:%M")
-            extrato.append(f"Depósito: R$ {deposito:.2f} | {data_hora}")
+            extrato.append(f"[{data_hora}] Depósito: R$ {deposito:.2f}")
             print(f"Depósito realizado com sucesso! Saldo: R$ {saldo:.2f}")
 
     # EXTRATO
