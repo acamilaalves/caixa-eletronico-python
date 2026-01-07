@@ -1,3 +1,5 @@
+from datetime import datetime
+
 print("BEM-VINDO AO CAIXA ELETRÔNICO")
 print("-----------------------------------------")
 
@@ -37,7 +39,8 @@ while True:
             print("Saldo insuficiente!")
         else:
             saldo -= saque
-            extrato.append(f"Saque: R$ {saque:.2f}")
+            data_hora = datetime.now().strftime("%d/%m/%Y %H:%M")
+            extrato.append(f"Saque: R$ {saque:.2f} | {data_hora}")
             print(f"Saque realizado com sucesso! Saldo: R$ {saldo:.2f}")
 
     # DEPÓSITO
@@ -52,7 +55,8 @@ while True:
             print("O valor do depósito deve ser maior que zero.")
         else:
             saldo += deposito
-            extrato.append(f"Depósito: R$ {deposito:.2f}")
+            data_hora = datetime.now().strftime("%d/%m/%Y %H:%M")
+            extrato.append(f"Depósito: R$ {deposito:.2f} | {data_hora}")
             print(f"Depósito realizado com sucesso! Saldo: R$ {saldo:.2f}")
 
     # EXTRATO
@@ -64,6 +68,15 @@ while True:
             for movimento in extrato:
                 print(movimento)
         print(f"Saldo atual: R$ {saldo:.2f}")
+        with open("extrato.txt", "w", encoding="utf-8") as arquivo:
+            arquivo.write("------- EXTRATO -------\n")
+
+            if not extrato:
+                arquivo.write("Nenhuma movimentação realizada.\n")
+            else:
+                for movimento in extrato:
+                    arquivo.write(movimento + "\n")
+            arquivo.write(f"\nSaldo atual: R$ {saldo:.2f}\n")
 
     # SAIR
     elif opcao == 0:
